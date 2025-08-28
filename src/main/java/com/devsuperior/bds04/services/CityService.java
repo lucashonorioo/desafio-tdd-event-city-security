@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CityService {
 
+    CityDTO create(CityDTO cityDTO);
     List<CityDTO> findAll();
 
 }

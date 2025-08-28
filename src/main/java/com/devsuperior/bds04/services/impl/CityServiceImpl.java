@@ -20,8 +20,20 @@ public class CityServiceImpl implements CityService {
 
     @Transactional
     @Override
+    public CityDTO create(CityDTO cityDTO) {
+        City city =  new City();
+        toDto(cityDTO, city);
+        city = cityRepository.save(city);
+        return new CityDTO(city);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public List<CityDTO> findAll() {
         List<City> cities = cityRepository.findAll();
         return cities.stream().map(CityDTO::new).toList();
+    }
+    private void toDto(CityDTO cityDTO, City city) {
+        city.setName(cityDTO.getName());
     }
 }
