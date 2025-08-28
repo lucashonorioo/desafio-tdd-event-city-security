@@ -30,7 +30,7 @@ public class CityServiceImpl implements CityService {
     @Transactional(readOnly = true)
     @Override
     public List<CityDTO> findAll() {
-        List<City> cities = cityRepository.findAll();
+        List<City> cities = cityRepository.findAllByOrderByNameAsc();
         return cities.stream().map(CityDTO::new).toList();
     }
     private void toDto(CityDTO cityDTO, City city) {
